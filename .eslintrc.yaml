@@ -1,0 +1,132 @@
+---
+env: # SET ENVIRONMENT GLOBAL VARIABLES ONLY AS NEEDED, e.g. DELETE node ENV from projects not using Node.js
+    browser: true # Allow global js variables used in browsers (e.g. document, window, etc.)
+    node: false # Allow global js variables used in node.js
+    jquery: true # Allow global js variables used in jQuery (e.g. $)
+rules: # For a full list of rules and their description visit: http://www.eslint.org/docs/rules
+  # POSSIBLE ERROR RULES
+  no-console: off # !!!SET THIS TO error FOR PROD CODE!!! Disallow the use of console methods
+  no-debugger: off # !!!SET THIS TO error FOR PROD CODE!!! Disallow the use of debugger statement
+  no-alert: off # !!!SET THIS TO error FOR PROD CODE!!! Disallow the use of alert, confirm, and prompt
+  strict: # Require the "use strict" statement on the function level, can eventually be changed to "global" to be used in the global scope
+    - error
+    - "function"
+  no-cond-assign: error # Disallow assignment operators in conditional expressions
+  no-constant-condition: error # Disallow constant expressions in conditions
+  no-control-regex: 1 # Disallow control characters in regular expressions
+  no-dupe-args: error # Disallow duplicate arguments in function definitions
+  no-dupe-keys: error # Disallow duplicate keys in object literals
+  no-duplicate-case: error # Disallow duplicate case labels
+  no-empty: error # Disallow empty block statements
+  no-empty-character-class: error # Disallow empty character classes in regular expressions
+  no-ex-assign: error # Disallow reassigning exceptions in catch clauses
+  no-extra-boolean-cast: error # Disallow unnecessary boolean casts
+  no-extra-parens: error # Disallow unnecessary parentheses
+  no-extra-semi: error # Disallow unnecessary parentheses
+  no-func-assign: error # Disallow reassigning function declarations
+  no-inner-declarations: # Disallow variable and function declarations in nested blocks
+    - error
+    - "both"
+  no-invalid-regexp: error # Disallow invalid regular expression strings in RegExp constructors
+  no-irregular-whitespace: #  Disallow irregular whitespace outside of strings and comments
+    - error
+    - skipStrings: true
+      skipComments: true
+  no-obj-calls: error # Disallow calling global object properties as functions
+  no-regex-spaces: error # Disallow multiple spaces in regular expressions
+  no-sparse-arrays: error # Disallow sparse arrays
+  no-template-curly-in-string: 1 # Disallow template literal placeholder syntax in regular strings
+  no-unexpected-multiline: error # Disallow confusing multiline expressions
+  no-unreachable: error # Disallow unreachable code after return, throw, continue, and break statements
+  no-unsafe-finally: error # Disallow control flow statements in finally blocks
+  no-unsafe-negation: error # Disallow negating the left operand of relational operators
+  use-isnan: error # Require calls to isNaN() when checking for NaN
+  valid-typeof: # Enforce comparing typeof expressions against valid strings
+    - error
+    - requireStringLiterals: true
+
+  # BEST PRACTICES
+  block-scoped-var: error # Enforce the use of variables within the scope they are defined
+  curly: # Enforce consistent brace style for all control statements
+    - error
+    - all
+  dot-location: 1 # Enforce consistent newlines after dots not before
+  dot-notation: 1 # Enforce dot notation whenever possible when calling object keys
+  eqeqeq: error # Require the use of === and !==
+  guard-for-in: error # Require for-in loops to include an if statement
+  no-case-declarations: error # Disallow lexical declarations in case clauses
+  no-div-regex: error # Disallow division operators explicitly at the beginning of regular expressions
+  no-else-return: error  # Disallow else blocks after return statements in if statements
+  no-empty-function: error # Disallow empty functions
+  no-empty-pattern: error # Disallow empty destructuring patterns
+  no-eq-null: error # Disallow null comparisons without type-checking operators
+  no-eval: error # Disallow the use of eval()
+  no-extend-native: 1 # Disallow extending native types
+  no-extra-bind: error # Disallow unnecessary calls to .bind()
+  no-extra-label: error # Disallow unnecessary labels
+  no-fallthrough: error # Disallow fallthrough of case statements
+  no-floating-decimal: error # Disallow leading or trailing decimal points in numeric literals
+  no-global-assign: error # Disallow assignment to native objects or read-only global variables
+  no-implicit-globals: error # TO AGREE ON Disallow variable and function declarations in the global scope
+  no-implied-eval: error # Disallow the use of eval()-like methods
+  no-invalid-this: 0 # Disallow this keywords outside of classes or class-like objects
+  no-labels: error # Disallow labeled statements
+  no-lone-blocks: error # Disallow unnecessary nested blocks
+  no-loop-func: 1 # Disallow function declarations and expressions inside loop statements
+  no-magic-numbers: 1 # Disallow magic numbers
+  no-new: error # Disallow new operators outside of assignments or comparisons
+  no-new-func: error # Disallow new operators with the Function object
+  no-new-wrappers: error # Disallow new operators with the String, Number, and Boolean objects
+  no-octal: error # Disallow octal literals
+  no-octal-escape: error # Disallow octal escape sequences in string literals
+  no-param-reassign: error # Disallow reassigning function parameters
+  no-proto: 1 # Disallow the use of the __proto__ property
+  no-redeclare: # Disallow variable redeclaration
+    - error
+    - builtinGlobals: true
+  no-return-assign: # Disallow assignment operators in return statements
+    - error
+    - "always"
+  no-return-await: error # Disallow unnecessary return await
+  no-script-url: error # Disallow javascript: urls
+  no-self-assign: error # Disallow assignments where both sides are exactly the same
+  no-self-compare: error # Disallow comparisons where both sides are exactly the same
+  no-sequences: error # Disallow comma operators
+  no-throw-literal: error # Disallow throwing literals as exceptions
+  no-unmodified-loop-condition: error # Disallow unmodified loop conditions
+  no-unused-expressions: error # Disallow unused expressions
+  no-unused-labels: error # Disallow unused labels
+  no-useless-call: error # Disallow unnecessary calls to .call() and .apply()
+  no-useless-concat: error # Disallow unnecessary concatenation of literals or template literals
+  no-useless-escape: error # Disallow unnecessary escape characters
+  no-useless-return: error # Disallow redundant return statements
+  no-warning-comments: error # Disallow specified warning terms in comments
+  no-with: error # Disallow with statements
+  prefer-promise-reject-errors: error # Require using Error objects as Promise rejection reasons
+  radix: 1 # Enforce the consistent use of the radix argument when using parseInt()
+  require-await: error # Disallow async functions which have no await expression
+  vars-on-top: 1 # Require var declarations be placed at the top of their containing scope
+  wrap-iife: # Require parentheses around immediate function invocations
+    - error
+    - "any"
+  yoda: error # Disallow “Yoda” conditions, e.g. ("red" === color) instead of the regular (color === "red")
+  no-catch-shadow: error # Disallow catch clause parameters from shadowing variables in the outer scope
+  no-delete-var: error # Disallow deleting variables
+  no-label-var: error # Disallow labels that share a name with a variable
+  no-shadow-restricted-names: error # Disallow identifiers from shadowing restricted names
+  no-undef: error # Disallow the use of undeclared variables unless mentioned in /*global */ comments
+  no-unused-vars: error # Disallow unused variables
+  no-use-before-define: error # Disallow the use of variables before they are defined
+
+
+
+
+
+
+
+
+
+
+
+
+
