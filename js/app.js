@@ -205,6 +205,7 @@
   $(document).on('click', '#form-submit', validateForm);
 
   $(document).ready(function () {
+    $('select').wrap('<div class="styled-select"></div>');
     var other_title = $('#other-title');
     $('body').find('input[type="text"]').first().focus();
     $('.activities').append('<span id="total-price"></span>');

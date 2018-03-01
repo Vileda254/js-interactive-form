@@ -13,7 +13,8 @@ button, select {
 }
 
 body {
-    font: 1em/1.5;
+    font-size: 1em;
+    line-height: 1.5;
     color: #184f68;
     background: #accbd9;
 }
@@ -41,6 +42,41 @@ form {
     background: #85b5ca;
 }
 
+.styled-select {
+    width: 100%;
+    overflow: hidden;
+    background-color: #c1deeb;
+    background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+    background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            calc(100% - 2.5em) 0.4em;
+    background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.styled-select select {
+    width: 125%;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.8em;
+    -webkit-appearance: none;
+}
+
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
 fieldset,
 legend,
 button {
@@ -66,7 +102,7 @@ legend {
 
 input[type="text"],
 input[type="email"],
-legend, select {
+legend {
     width: 100%;
 }
 
@@ -81,7 +117,7 @@ select {
     margin-bottom: 1.125em;
 }
 
-input, select {
+input {
     font-size: 1em;
     font-weight: 500;
     padding: .8em;
@@ -90,7 +126,7 @@ input, select {
     outline: none;
 }
 
-input:focus, select:focus {
+input:focus {
     background: #fff;
     border-color: #5e97b0;
     transition: border-color .4s, background-color .4s;
@@ -111,11 +147,6 @@ button {
 
 button:hover {
     background: #184c62;
-}
-
-select {
-    border: none;
-    border-radius: 0;
 }
 
 /* =================================
