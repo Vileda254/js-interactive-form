@@ -3,7 +3,7 @@
 
   // Function to show the "other" input field in Job Role selection if "Other is picked from the drop down.
   function showOtherJob() {
-    var selected = $('option:selected', this).val(),
+    var selected = $('#title').val(),
       $text_box = $('#other-title');
 
     if (selected === "other") {
@@ -240,6 +240,8 @@
     // Hide the "Other" label and input field in the "Basic Info" section.
     $other_title.prev().hide();
     $other_title.hide();
+    // Run the showOtherJob function, i.e. to display the other input if "other" was left selected from a previous session.
+    showOtherJob();
   });
 
 })(jQuery);
