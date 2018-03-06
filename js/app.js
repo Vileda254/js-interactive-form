@@ -1,20 +1,22 @@
 (function IIFE ($) {
   "use strict";
 
+  // Function to show the "other" input field in Job Role selection if "Other is picked from the drop down.
   function showOtherJob() {
     var selected = $('option:selected', this).val(),
-      text_box = $('#other-title');
+      $text_box = $('#other-title');
 
     if (selected === "other") {
-      text_box.prev().show();
-      text_box.show();
+      $text_box.prev().show();
+      $text_box.show();
     } else {
-      text_box.prev().hide();
-      text_box.hide();
+      $text_box.prev().hide();
+      $text_box.hide();
     }
   }
 
-
+  // Function used to filter T-shirt colors depending on value from "Design" drop down. It shows only colors
+  // corresponding to given "Design" theme.
   function filterColor() {
     var selected_theme = $('option:selected', this).val(),
       first_option = 0,
@@ -40,7 +42,9 @@
     }
   }
 
-
+  // Function used to disable time-wise overlapping activities in the "Register for Activities" section. It parses the
+  // date portion of a checked activities' text and applies the disabled attribute to any checkboxes with a matching date
+  // portion of corresponding text.
   function disableOverlaps(event) {
     var checkboxes = $.makeArray($(event.target).parent().siblings().children()),
       checkbox_date_str = $(event.target).parent().text(),
@@ -69,6 +73,8 @@
     }
   }
 
+  // Function to display the total price for checked activities in the "Register for Activities" section. If price is
+  // zero, no text is visible.
   function displayPrice() {
     var inputs = $.makeArray($('.activities').find('label')),
       $total_price = $('#total-price'),
@@ -92,6 +98,7 @@
     }
   }
 
+  // Show and hide payment info or additional fields depending on value from "I'm going to pay with" drop down.
   function filterPayments() {
     var payment_input = $('option:selected', this).val(),
       $credit_card_wrapper = $('#credit-card'),
@@ -117,6 +124,7 @@
     }
   }
 
+  // Function for validating mandatory form inputs, called on "Register" button click.
   function validateForm(e) {
     var $name_input = $('#name'),
       $email_input = $('#mail'),
@@ -137,12 +145,16 @@
       $invalid_cvv_error = $('.invalid-cvv'),
       invalid_cvv,
       validation_error = 'validation-error';
+
+    // Validate if name input isn't empty, if it is display an error message.
     if ($name_input.val() === '') {
       e.preventDefault();
       $name_input.prev('label').text('Name: (please provide your name)').addClass(validation_error);
     } else {
       $name_input.prev('label').text('Name:').removeClass(validation_error);
     }
+
+    // Validate if e-mail is filled in and valid, if not display error message.
     invalid_email = !$email_input.val().match(/^[-a-z0-9~!$%^&*_=+}{\\'?]+(\.[-a-z0-9~!$%^&*_=+}{\\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i);
     if (invalid_email) {
       e.preventDefault();
@@ -150,6 +162,8 @@
     } else {
       $email_input.prev('label').text('Email:').removeClass(validation_error);
     }
+
+    // Validate if at least one activity is checked, if not display error message.
     checked_activity = $activities_list.find('input[type="checkbox"]:checked');
 
     if (checked_activity.length === no_checked_activities) {
@@ -159,7 +173,8 @@
       $activities_list.find('legend').text('Register for Activities').removeClass(validation_error);
     }
 
-
+    // If payment type is credit card, validate that a valid CC number, ZIP code and CVV number have been entered, if
+    // not display corresponding error message.
     if (payment_value === 'credit card') {
       $invalid_cc_error.remove();
       $invalid_zip_error.remove();
@@ -197,6 +212,7 @@
 
   }
 
+  // Attach event handlers to corresponding DOM elements.
   $(document).on('change', '#title', showOtherJob);
   $(document).on('change', '#design', filterColor);
   $(document).on('change', 'input[type="checkbox"]', disableOverlaps);
@@ -204,17 +220,26 @@
   $(document).on('change', '#payment', filterPayments);
   $(document).on('click', '#form-submit', validateForm);
 
+
+  // Setup of page after load.
   $(document).ready(function () {
-    $('select').wrap('<div class="styled-select"></div>');
-    var other_title = $('#other-title');
+    var $other_title = $('#other-title');
+    // Set focus on first text input field.
     $('body').find('input[type="text"]').first().focus();
+    // Wrap all select elements in a .styled-select div, for styling purposes.
+    $('select').wrap('<div class="styled-select"></div>');
+    // Append the #total-price span to activities div, where the price is displayed.
     $('.activities').append('<span id="total-price"></span>');
+    // Initially hide the Color drop down in "T-shirt Info" section.
     $('#colors-js-puns').hide();
+    // Set initial value of the "I'm going to pay with" drop down to "Credit Card".
     $('#payment').val('credit card');
+    // Hide the "paypal" and "bitcoin" payment information sections.
     $('#paypal').hide();
     $('#bitcoin').hide();
-    other_title.prev().hide();
-    other_title.hide();
+    // Hide the "Other" label and input field in the "Basic Info" section.
+    $other_title.prev().hide();
+    $other_title.hide();
   });
 
 })(jQuery);
